@@ -1,7 +1,22 @@
-const NUM_OF_DIVS = 16 * 16;
+const INITIAL_NUM = 16;
 
-const num = document.getElementById("num");
-num.addEventListener("click", (event) => {
+const parent = document.getElementById("container");
+
+function createNew(num) {
+  for (let i = 0; i < num * num; i++) {
+    const div = document.createElement("div");
+    div.classList = "box";
+    div.style.setProperty("--squares", `${num}`);
+    parent.appendChild(div);
+
+    div.addEventListener("mouseenter", (event) => {
+      div.style.backgroundColor = "black";
+    });
+  }
+}
+
+const choice = document.getElementById("choice");
+choice.addEventListener("click", (event) => {
   let squares = prompt("Enter number of squares: ", "");
 
   if (isNaN(squares)) {
@@ -18,16 +33,11 @@ num.addEventListener("click", (event) => {
     alert("Input too large. Enter a number less than 100.");
     return;
   }
+
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+  createNew(parseInt(squares));
 });
 
-const parent = document.getElementById("container");
-for (let i = 0; i < NUM_OF_DIVS; i++) {
-  const div = document.createElement("div");
-  div.classList = "box";
-  div.textContent = "";
-  parent.appendChild(div);
-
-  div.addEventListener("mouseenter", (event) => {
-    div.style.backgroundColor = "black";
-  });
-}
+createNew(INITIAL_NUM);

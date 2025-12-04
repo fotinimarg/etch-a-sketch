@@ -13,13 +13,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
-  width: 940px;
-  height: 940px;
+  width: 960px;
+  height: 960px;
 }
 
 .box {
-  flex: 0 0 calc((100% - 15px) / 16);
-  height: calc((100% - 15px) / 16);
+  --squares: 16;
+  flex: 0 0 calc((100% - 15px) / var(--squares));
+  height: calc((100% - 15px) / var(--squares));
   margin: 0px;
   background-color: rgb(237, 237, 237);
   border: 1px solid rgb(189, 188, 188);
